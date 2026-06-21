@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>世界杯预选赛 · 赛程与数据笔记</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+      background: #f5f9fc;
+      color: #1e2b3a;
+      line-height: 1.7;
+      padding: 1.2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 6px 20px rgba(0, 40, 60, 0.06);
+      padding: 2rem 1.8rem 2.8rem;
+      flex: 1;
+    }
+    /* 网格卡片感：用背景色块模拟卡片内嵌 */
+    .grid-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1.8rem 0 1.2rem;
+    }
+    .grid-note .card {
+      background: #ecf3f7;
+      border-radius: 20px;
+      padding: 1.2rem 1rem;
+      box-shadow: inset 0 0 0 1px rgba(40, 120, 140, 0.08);
+    }
+    .grid-note .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #146b7a;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+    .grid-note .card p {
+      font-size: 0.9rem;
+      color: #2a4050;
+    }
+    /* 标题区 */
+    .hero {
+      border-left: 5px solid #2b9a9a;
+      padding-left: 1.1rem;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #104e5c;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .hero .sub {
+      margin-top: 0.4rem;
+      color: #3f6673;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .meta-note {
+      background: #e1f0f0;
+      padding: 1rem 1.2rem;
+      border-radius: 40px 12px 40px 12px;
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #0b4f5c;
+      margin: 1rem 0 1.6rem;
+      font-weight: 450;
+    }
+    /* 正文段落 */
+    p {
+      margin-bottom: 1.2rem;
+    }
+    .intro-quote {
+      background: #f0f8fa;
+      border-left: 4px solid #359e9e;
+      padding: 1rem 1.4rem;
+      border-radius: 0 16px 16px 0;
+      margin: 1.6rem 0;
+      font-style: normal;
+      color: #1a4a55;
+    }
+    .intro-quote::before {
+      content: "📌 整理笔记 · ";
+      font-weight: 500;
+      color: #0d6d73;
+    }
+    .link-sentence {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 0.6rem 1rem;
+      margin: 1rem 0 1.6rem;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(40, 140, 140, 0.08);
+      border: 1px solid #c1e0e0;
+    }
+    a {
+      color: #166b7a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px dotted #78bebe;
+      transition: border-color 0.2s, background 0.1s;
+      padding: 0.1rem 0;
+    }
+    a:hover {
+      border-bottom: 2px solid #0f5c66;
+      background: #def2f2;
+      border-radius: 4px;
+    }
+    .faq-mini {
+      margin: 2.2rem 0 0.8rem;
+      border-top: 2px solid #cbe3e7;
+      padding-top: 1.6rem;
+    }
+    .faq-mini details {
+      background: #f8fcfd;
+      padding: 0.7rem 1.2rem;
+      border-radius: 40px 12px 40px 12px;
+      margin-bottom: 0.8rem;
+      border: 1px solid #cde2e5;
+    }
+    .faq-mini summary {
+      font-weight: 500;
+      color: #115a65;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .faq-mini details p {
+      margin: 0.6rem 0 0.2rem;
+      font-size: 0.9rem;
+      color: #1d3846;
+    }
+    .footer-stamp {
+      margin-top: 2.4rem;
+      font-size: 0.8rem;
+      color: #617b84;
+      border-top: 1px dashed #b0ccd2;
+      padding-top: 1rem;
+      text-align: right;
+      letter-spacing: 0.3px;
+    }
+    /* 响应式 */
+    @media (max-width: 560px) {
+      .wrapper {
+        padding: 1.5rem 1rem;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .grid-note {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .grid-note .card {
+        padding: 1rem;
+      }
+      .meta-note {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+      }
+    }
+    @media (max-width: 400px) {
+      body {
+        padding: 0.6rem;
+      }
+      .hero {
+        padding-left: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="hero">
+    <h1>世界杯预选赛 · 对照与延伸</h1>
+    <div class="sub">从日常数据查询到赛程梳理</div>
+  </div>
+
+  <div class="meta-note">
+    ⚽ 亚洲 · 南美 · 欧洲 · 非洲 · 中北美及加勒比海
+  </div>
+
+  <p>
+    每隔四年，围绕世界杯预选赛的讨论总会在社交平台与球迷群之间交替升温。对于大多数人来说，最直接的需求往往不是深究战术，而是快速找到某一轮赛果、跨洲对比出线形势，或者在繁杂的赛历中定位下一场关键对决。
+  </p>
+  <p>
+    正因为这样，一个能够集中呈现各洲赛程、积分榜以及附加赛路径的页面，就变成了日常刷新的实用工具。无论是手机端快速翻阅，还是桌面端对照多个小组，信息的组织方式直接影响着查阅效率。
+  </p>
+
+  <!-- 卡片网格：特点与场景 -->
+  <div class="grid-note">
+    <div class="card">
+      <h3>📋 多洲对照</h3>
+      <p>亚洲18强赛、南美积分循环、欧洲小组赛……同一页面内横向比较各洲晋级规则与剩余轮次。</p>
+    </div>
+    <div class="card">
+      <h3>📅 赛历锚点</h3>
+      <p>国际比赛日窗口、附加赛时间窗、抽签节点，适合做个人日程标记的前置参考。</p>
+    </div>
+    <div class="card">
+      <h3>🔍 延伸阅读</h3>
+      <p>从净胜球计算到跨洲附加赛历史数据，一条链接即可展开更深层的背景。</p>
+    </div>
+    <div class="card">
+      <h3>🧩 移动优先</h3>
+      <p>卡片式布局、清晰的分组色块，在手机浏览器上无需缩放即可阅读关键数字。</p>
+    </div>
+  </div>
+
+  <div class="intro-quote">
+    如果你正在整理自己的预选赛笔记，或者需要随时调取各小组积分差，<a href="https://zh-url-worldcup.com">世界杯预选赛</a>这个页面可以作为你的中心参照——它把分散在各大洲足联官网的信息聚合在同一套浏览逻辑下，省去反复切换页签的麻烦。
+  </div>
+
+  <p>
+    以亚洲区为例，第三阶段18支球队分成三组，每组前两名直接晋级，第三、四名进入第四阶段附加赛。而南美区则依旧是18轮大循环，积分榜每一轮变动都直接影响直接晋级名额和附加赛席位。把这样的规则差异放在相邻的表格里查看，比对起来会直观很多。
+  </p>
+  <p>
+    欧洲区的赛制相对复杂：小组头名直接出线，小组第二则需要与部分国家联赛晋级的球队混编进行附加赛。此时，如果能一键跳转到对应小组的实时积分，往往比翻看新闻更有效率。
+  </p>
+
+  <!-- 嵌入链接的自然句子（第二个链接，避免与前面相同位置） -->
+  <p style="background: #f3fafb; padding: 0.8rem 1.2rem; border-radius: 30px;">
+    🔗 实际浏览时，你也可以从收藏夹直接打开 <a href="https://zh-url-worldcup.com">世界杯预选赛</a>，把赛程周历作为标签页常驻，方便每个国际比赛日之后快速刷新数据。
+  </p>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <details>
+      <summary>❓ 各洲晋级名额如何分配？</summary>
+      <p>直接晋级名额：亚洲8.5、非洲9、欧洲16、南美6.5、中北美3.5、大洋洲1.5。附加赛由六支球队争夺最后2个席位。</p>
+    </details>
+    <details>
+      <summary>📆 下一阶段关键日期？</summary>
+      <p>2025年6月国际比赛日窗口将进行多轮预选赛，9月开启部分洲际附加赛抽签。具体日期以各足联公告为准。</p>
+    </details>
+    <details>
+      <summary>⚡ 怎样快速查询某小组积分？</summary>
+      <p>在浏览器打开世界杯预选赛页面后，可用「查找」功能定位小组代号，或直接使用页面内置的筛选标签切换大洲。</p>
+    </details>
+  </div>
+
+  <div class="footer-stamp">
+    整理笔记 · 信息更新截至2025年4月 · 参考各洲足联公开赛历
+  </div>
+</div>
+</body>
+</html>
